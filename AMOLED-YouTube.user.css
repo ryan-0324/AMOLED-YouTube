@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.09.26
+@version        2023.09.26.13.30
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -11,9 +11,12 @@
 @preprocessor   default
 
 @var select ayt-oefd  "Override Chrome's #enable-force-dark flag?" { "Yes": "only light", "No*": "initial" }
-@var range  ayt-bgc-h "Background color hue"                       [0, 0, 360, "deg"]
-@var range  ayt-bgc-s "Background color saturation"                [0, 0, 100, "%"]
-@var range  ayt-bgc-l "Background color lightness"                 [0, 0, 100, "%"]
+@var range  ayt-bgc-h "Background color hue"                       [0, 0, 360, 0.01, "deg"]
+@var range  ayt-bgc-s "Background color saturation"                [0, 0, 100, 0.01, "%"]
+@var range  ayt-bgc-l "Background color lightness"                 [0, 0, 100, 0.01, "%"]
+@var range  ayt-tc-h  "Text color hue"                             [0, 0, 360, 0.01, "deg"]
+@var range  ayt-tc-s  "Text color saturation"                      [0, 0, 100, 0.01, "%"]
+@var range  ayt-tc-l  "Text color lightness"                       [94.51, 0, 100, 0.01, "%"]
 @var color  ayt-bc    "Border color"                               #333
 @var color  ayt-sbfbc "Search box focused border color"            #1c62b9
 ==/UserStyle== */
@@ -28,7 +31,7 @@
       :root,
       body {
         background-color: var(--ayt-bgc) !important;
-        color: #f1f1f1;
+        color: var(--ayt-tc);
       }
 
       /* Masthead Placeholder */
@@ -48,7 +51,7 @@
 
         /* Top Left Placeholder Hamburger Button */
           ytd-masthead.shell svg {
-            color: #fff;
+            color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
           }
 
       /* Video / Playlist Thumbnail Placeholders */
@@ -88,7 +91,7 @@
 
     h1,
     p {
-      color: #f1f1f1;
+      color: var(--ayt-tc);
       text-shadow: none;
     }
 
@@ -109,11 +112,11 @@
       }
 
       #masthead-search-terms {
-        color: #e0e0e0;
+        color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 6.67%));
       }
 
       #masthead-search-terms::-webkit-input-placeholder {
-        color: #888;
+        color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 41.18%));
       }
 
       .search-button {
@@ -121,7 +124,7 @@
         border-color: var(--ayt-bc);
         border-left-width: 0;
         border-radius: 0 18px 18px 0;
-        color: #f1f1f1;
+        color: var(--ayt-tc);
       }
 
       .search-button:hover {
@@ -141,13 +144,22 @@
   /* Colors */
     :root {
       --ayt-bgc: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) var(--ayt-bgc-l));
+      --ayt-tc: hsl(var(--ayt-tc-h) var(--ayt-tc-s) var(--ayt-tc-l));
     }
     
     html[darker-dark-theme],     /* Applied to light mode to prevent */
     [darker-dark-theme] [light], /* flashes of unstyled content */
     html[darker-dark-theme][dark],
     [darker-dark-theme] [dark] {
+      --yt-spec-text-primary: var(--ayt-tc);
       --yt-spec-text-primary-inverse: var(--ayt-bgc);
+    }
+
+    html[system-icons][dark],
+    html[system-icons] [dark] {
+      --yt-spec-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
+      --yt-spec-brand-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
     }
 
     html, /* Applied to light mode to prevent flashes of unstyled content */
@@ -160,9 +172,34 @@
       --yt-spec-base-background: var(--ayt-bgc);
       --yt-spec-raised-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 7.06%));
       --yt-spec-menu-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-spec-inverted-background: var(--ayt-tc);
+      --yt-spec-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-touch-response-inverse: var(--ayt-bgc);
       --yt-spec-static-brand-black: var(--ayt-bgc);
       --yt-spec-static-grey: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-spec-static-overlay-background-solid: var(--ayt-bgc);
+      --yt-spec-static-overlay-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-touch-response-inverse: var(--ayt-bgc);
+      --yt-spec-snackbar-background-updated: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 3.14%));
+      --yt-spec-mono-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 9.41%));
+      --yt-spec-static-overlay-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 4.31%));
+
       --yt-spec-filled-button-text: var(--ayt-bgc);
+      --ytd-searchbox-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .88);
+      --yt-spec-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.84%));
+      --yt-spec-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
+      --yt-spec-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-brand-icon-active: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-wordmark-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-brand-white: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-text-primary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-text-primary-inverse: var(--ayt-bgc);
+      --yt-spec-static-overlay-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-spec-static-overlay-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-spec-static-overlay-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-spec-static-overlay-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-spec-selected-nav-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
     }
 
     html, /* Applied to light mode to prevent flashes of unstyled content */
@@ -184,6 +221,24 @@
       --yt-live-chat-vem-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 18.43%));
       --yt-live-chat-product-picker-hover-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
       background-color: var(--ayt-bgc) !important;
+
+      --yt-live-chat-secondary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-live-chat-tertiary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .54);
+      --yt-live-chat-enabled-send-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-disabled-icon-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-live-chat-picker-button-hover-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .74);
+      --yt-live-chat-mention-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-deleted-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-deleted-message-bar-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-reconnect-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-emoji-picker-search-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-emoji-picker-search-placeholder-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 34.51%));
+      --yt-live-chat-slider-markers-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-automod-button-explanation-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-live-chat-product-picker-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-product-picker-disabled-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+
+      --yt-live-chat-text-input-field-inactive-underline-color: #666; /* TEMP */
     }
 
     html {
@@ -253,7 +308,7 @@
 
         :is(.ytp-sb-subscribe,
         a.ytp-sb-subscribe):active {
-          background-color: #acacac;
+          background-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.06%));
         }
 
       /* Channel Unsubscribe Button */
@@ -494,8 +549,8 @@
             }
 
             .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--outline[style*="background-color: rgb(255, 255, 255)"]:active {
-              background-color: #acacac;
-              border-color: #acacac;
+              background-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.06%));
+              border-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.06%));
             }
 
           /* rgb(33, 33, 33) Background Buttons */
@@ -506,11 +561,11 @@
             }
 
             .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--outline[style*="background-color: rgb(33, 33, 33)"]:hover {
-              background-color: #1a1a1a !important;
+              background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 10.2%)) !important;
             }
 
             .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--outline[style*="background-color: rgb(33, 33, 33)"]:hover {
-              background-color: #313131 !important;
+              background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 19.22%)) !important;
             }
 
       /* Mono Text Buttons */
@@ -566,7 +621,7 @@
       :is(yt-chip-cloud-chip-renderer[chip-style=STYLE_DEFAULT],
       yt-chip-cloud-chip-renderer[chip-style=STYLE_HOME_FILTER],
       yt-chip-cloud-chip-renderer[chip-style=STYLE_REFRESH_TO_NOVEL_CHIP]):not([selected]):focus-visible {
-        box-shadow: inset 0 0 0 2px #fff;
+        box-shadow: inset 0 0 0 2px hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
       }
 
       :is(yt-chip-cloud-chip-renderer[chip-style=STYLE_DEFAULT],
@@ -578,7 +633,7 @@
       :is(yt-chip-cloud-chip-renderer[chip-style=STYLE_DEFAULT],
       yt-chip-cloud-chip-renderer[chip-style=STYLE_HOME_FILTER],
       yt-chip-cloud-chip-renderer[chip-style=STYLE_REFRESH_TO_NOVEL_CHIP])[selected]:active {
-        background-color: #acacac;
+        background-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.06%));
       }
 
       :is(yt-chip-cloud-chip-renderer[chip-style=STYLE_DEFAULT],
@@ -618,6 +673,11 @@
       #container.ytd-searchbox {
         border-color: var(--ayt-bc);
       }
+
+      /* Placeholder Text */
+        #search-input.ytd-searchbox-spt #search::-webkit-input-placeholder {
+          color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 41.18%));
+        }
 
       /* Search Box Button */
         #search-icon-legacy.ytd-searchbox {
@@ -667,11 +727,11 @@
           }
 
           #microphone.ytd-voice-search-dialog-renderer[state=try-again] #microphone-circle.ytd-voice-search-dialog-renderer:hover {
-            background-color: #1a1a1a;
+            background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 10.2%));
           }
 
           #microphone.ytd-voice-search-dialog-renderer[state=try-again] #microphone-circle.ytd-voice-search-dialog-renderer:active {
-            background-color: #313131;
+            background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 19.22%));
           }
 
           #microphone.ytd-voice-search-dialog-renderer[state=try-again] #microphone-circle.ytd-voice-search-dialog-renderer paper-ripple {
@@ -711,6 +771,11 @@
             border-bottom-color: var(--ayt-bc);
           }
 
+    /* Notification Bell Icon */
+      .yt-spec-icon-badge-shape {
+        color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      }
+
     /* White-text Sign in Button */
       .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--outline,
       .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--outline:hover {
@@ -746,6 +811,18 @@
       /* YouTube Featured Videos Panel */
         #dismissible.ytd-brand-video-shelf-renderer {
           box-shadow: inset 0 0 0 1px var(--ayt-bc);
+        }
+
+      /* Inline Styled Text */
+        :is(#badge-container.ytd-brand-video-shelf-renderer,
+        #title-container.ytd-brand-video-shelf-renderer,
+        #subtitle-container.ytd-brand-video-shelf-renderer)[style*="color:#ffffff"] {
+          color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%)) !important;
+        }
+
+      /* Inline Styled Icon */
+        .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text[style*="color: rgb(255, 255, 255)"] {
+          color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%)) !important;
         }
 
         /* Show more Button */
@@ -888,6 +965,28 @@
         color: var(--yt-spec-static-brand-white) !important;
       }
 
+    /* Membership Panels */
+      .ytm-lp-offer-card-view-model-c3 {
+        background-color: var(--yt-spec-base-background);
+        box-shadow: inset 0 0 0 1px var(--ayt-bc);
+      }
+
+        /* Dividers */
+          .ytm-lp-offer-card-view-model-c3__divider {
+            border-color: var(--ayt-bc);
+          }
+
+    /* FAQ Panel */
+      .yt-lp-faq-section-view-model {
+        background-color: var(--yt-spec-base-background);
+        box-shadow: inset 0 0 0 1px var(--ayt-bc);
+      }
+
+      /* Entry Borders */
+        .yt-lp-faq-entry-view-model {
+          border-bottom-color: var(--ayt-bc);
+        }
+
     /* FAQ Section Borders */
       yt-generic-faq-question-renderer {
         border-bottom-color: var(--ayt-bc);
@@ -987,8 +1086,13 @@
             }
 
             ytd-watch-metadata[description-collapsed] #description.ytd-watch-metadata:hover {
-              background-color: var(--yt-spec-badge-chip-background);;
+              background-color: var(--yt-spec-badge-chip-background);
             }
+
+            /* Inline Styled Text */
+              ytd-text-inline-expander [style*="color: rgb(255, 255, 255)"] {
+                color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%)) !important;
+              }
 
             /* Transcript Section Divider */
               ytd-video-description-transcript-section-renderer {
@@ -1025,12 +1129,12 @@
 
               :is(.arrow.ytd-horizontal-card-list-renderer,
               .ytd-horizontal-card-list-renderer[arrow]):hover {
-                background-color: #1a1a1a;
+                background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 10.2%));
               }
 
               :is(.arrow.ytd-horizontal-card-list-renderer,
               .ytd-horizontal-card-list-renderer[arrow]):active {
-                background-color: #313131;
+                background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 19.22%));
               }
 
           /* Video Metadata Panels */
@@ -1103,6 +1207,11 @@
                 border-bottom-color: var(--ayt-bc);
               }
 
+            /* Pinned Message */
+              yt-live-chat-banner-renderer.yt-live-chat-banner-manager {
+                border-color: var(--ayt-bc);
+              }
+
             /* Chat Input Panel Borders */
               #panel-pages.yt-live-chat-renderer {
                 border-top-color: var(--ayt-bc);
@@ -1111,6 +1220,12 @@
 
           /* Live Chat Card */
             #card.yt-live-chat-viewer-engagement-message-renderer {
+              background-color: var(--yt-spec-base-background);
+              box-shadow: inset 0 0 0 1px var(--ayt-bc);
+            }
+
+          /* Live Chat Celebrate the first Super Chat Card */
+            #bumper-content.yt-bumper-user-edu-content-view-model {
               background-color: var(--yt-spec-base-background);
               box-shadow: inset 0 0 0 1px var(--ayt-bc);
             }
@@ -1179,6 +1294,7 @@
     .ycs-app {
       border-color: var(--ayt-bc) !important;
       border-radius: 12px;
+      color: var(--yt-spec-text-primary) !important;
     }
 
     /* Buttons */
@@ -1228,6 +1344,11 @@
           background-color: rgb(255 255 255 / .191) !important;
         }
 
+      /* How to use Button */
+        .ycs-ext-search_link {
+          color: var(--yt-spec-text-primary) !important;
+        }
+
       /* Open FAQ Button */
         #ycs_btn_open_modal {
           background-color: var(--yt-spec-base-background) !important;
@@ -1246,12 +1367,21 @@
         }
 
         /* FAQ Pop-up */
+          .ycs_modal_body  {
+            color: var(--yt-spec-text-primary) !important;
+          }
+
           .ycs_modal-content {
             background-color: var(--yt-spec-base-background) !important;
-            border-color: var(--ayt-bc) ;
+            border-color: var(--ayt-bc);
             border-radius: 12px;
-            color: var(--yt-spec-text-primary);
+            color: var(--yt-spec-text-primary) !important;
           }
+
+          /* Divider */
+            .ycs_modal_body hr {
+              border-color: var(--ayt-bc);
+            }
 
           /* FAQ Code Blocks */
             .ycs_modal_body code {
@@ -1292,7 +1422,7 @@
       }
 
       .ycs-search__input::-webkit-input-placeholder {
-        color: #888;
+        color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 41.18%));
       }
 
       /* Search Category Drop-down Menu*/
