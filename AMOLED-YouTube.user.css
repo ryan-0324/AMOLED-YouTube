@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.09.26.13.30
+@version        2023.09.28
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -22,11 +22,118 @@
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
-  :root {
-    color-scheme: var(--ayt-oefd);
-  }
+  /* Variables / Colors */
+    :root {
+      color-scheme: var(--ayt-oefd);
+      --ayt-bgc: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) var(--ayt-bgc-l));
+      --ayt-tc: hsl(var(--ayt-tc-h) var(--ayt-tc-s) var(--ayt-tc-l));
+    }
 
-  /* Fall-back */
+    html[darker-dark-theme],     /* Applied to light mode to prevent */
+    [darker-dark-theme] [light], /* flashes of unstyled content */
+    html[darker-dark-theme][dark],
+    [darker-dark-theme] [dark] {
+      --yt-spec-text-primary: var(--ayt-tc);
+      --yt-spec-text-primary-inverse: var(--ayt-bgc);
+    }
+
+    html[system-icons][dark],
+    html[system-icons] [dark] {
+      --yt-spec-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
+      --yt-spec-brand-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+    }
+
+    html, /* Applied to light mode to prevent flashes of unstyled content */
+    html[dark],
+    [dark] {
+      --ytd-searchbox-legacy-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
+      --ytd-searchbox-legacy-button-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
+      --ytd-searchbox-legacy-button-hover-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
+      --ytd-searchbox-background: var(--ayt-bgc);
+      --yt-spec-base-background: var(--ayt-bgc);
+      --yt-spec-raised-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 7.06%));
+      --yt-spec-menu-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-spec-inverted-background: var(--ayt-tc);
+      --yt-spec-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-touch-response-inverse: var(--ayt-bgc);
+      --yt-spec-static-brand-black: var(--ayt-bgc);
+      --yt-spec-static-grey: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-spec-static-overlay-background-solid: var(--ayt-bgc);
+      --yt-spec-static-overlay-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-touch-response-inverse: var(--ayt-bgc);
+      --yt-spec-snackbar-background-updated: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 3.14%));
+      --yt-spec-mono-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 9.41%));
+      --yt-spec-static-overlay-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 4.31%));
+
+      --yt-spec-filled-button-text: var(--ayt-bgc);
+      --ytd-searchbox-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .88);
+      --yt-spec-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.84%));
+      --yt-spec-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
+      --yt-spec-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-brand-icon-active: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-wordmark-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-brand-white: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-text-primary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-text-primary-inverse: var(--ayt-bgc);
+      --yt-spec-static-overlay-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-spec-static-overlay-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-spec-static-overlay-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-spec-static-overlay-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-spec-static-overlay-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-spec-selected-nav-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+    }
+
+    html, /* Applied to light mode to prevent flashes of unstyled content */
+    html[dark] {
+      --yt-live-chat-action-panel-background-color-transparent: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .8);
+      --yt-live-chat-secondary-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-live-chat-toast-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 13.73%));
+      --yt-live-chat-mode-change-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.12%));
+      --yt-live-chat-disabled-button-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
+      --yt-live-chat-dialog-background-color: var(--ayt-bc);
+      --yt-emoji-picker-variant-selector-bg-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.55%));
+      --yt-live-chat-text-input-field-suggestion-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 18.43%));
+      --yt-live-chat-text-input-field-suggestion-background-color-hover: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.51%));
+      --yt-emoji-picker-search-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
+      --yt-live-chat-slider-container-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 25.88%));
+      --yt-live-chat-banner-gradient-scrim: linear-gradient(hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .95), transparent);
+      --yt-live-chat-action-panel-gradient-scrim: linear-gradient(0, hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .95), transparent);
+      --yt-live-chat-vem-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 18.43%));
+      --yt-live-chat-product-picker-hover-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
+      background-color: var(--ayt-bgc) !important;
+
+      --yt-live-chat-secondary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-live-chat-tertiary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .54);
+      --yt-live-chat-enabled-send-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-disabled-icon-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+      --yt-live-chat-picker-button-hover-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .74);
+      --yt-live-chat-mention-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-deleted-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-deleted-message-bar-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-reconnect-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-emoji-picker-search-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-emoji-picker-search-placeholder-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 34.51%));
+      --yt-live-chat-slider-markers-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
+      --yt-live-chat-automod-button-explanation-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
+      --yt-live-chat-product-picker-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
+      --yt-live-chat-product-picker-disabled-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
+
+      --yt-live-chat-text-input-field-inactive-underline-color: var(--ayt-bc);
+    }
+
+    html {
+      --yt-opalescence-dark-grey: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.12%));
+      --yt-deprecated-luna-black: var(--ayt-bgc);
+      --yt-spec-black-1: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
+      --yt-spec-black-2: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 6.27%));
+      --yt-spec-black-3: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 2.75%));
+      --yt-spec-black-4: var(--ayt-bgc);
+      --yt-spec-grey-1: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 74.12%));
+      --yt-spec-grey-5: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 31.76%));
+    }
+
+  /* Fall-back / "This page isn't available" Page*/
     /* Flash Of Unstyled Content Prevention */
       :root,
       body {
@@ -89,8 +196,13 @@
             box-shadow: inset 0 0 0 1px var(--ayt-bc);
           }
 
+    .not-found /* youtube.com/yt Page */ {
+      background-color: var(--ayt-bgc);
+    }
+
     h1,
-    p {
+    p,
+    .not-found-content__paragraph /* youtube.com/yt Page */ {
       color: var(--ayt-tc);
       text-shadow: none;
     }
@@ -99,27 +211,36 @@
       background-image: url(//www.gstatic.com/youtube/img/branding/youtubelogo/1x/youtubelogo_dark_30.png);
     }
 
+    .not-found-search__logo /* youtube.com/yt Page */ {
+      content: url(//www.gstatic.com/youtube/img/branding/youtubelogo/1x/youtubelogo_dark_30.png);
+    }
+
     /* Search Box */
-      #masthead-search-terms-border {
+      #masthead-search-terms-border,
+      .not-found-search__field /* youtube.com/yt Page */ {
         background-color: var(--ayt-bgc);
         border-color: var(--ayt-bc);
         border-radius: 18px 0 0 18px;
         box-shadow: none;
       }
 
-      #masthead-search-terms-border:focus-within {
+      #masthead-search-terms-border:focus-within,
+      .not-found-search__field:focus-within /* youtube.com/yt Page */ {
         border-color: var(--ayt-sbfbc);
       }
 
-      #masthead-search-terms {
+      #masthead-search-terms,
+      .not-found-search__input /* youtube.com/yt Page */ {
         color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 6.67%));
       }
 
-      #masthead-search-terms::-webkit-input-placeholder {
+      #masthead-search-terms::-webkit-input-placeholder,
+      .not-found-search__input::-webkit-input-placeholder /* youtube.com/yt Page */ {
         color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 41.18%));
       }
 
-      .search-button {
+      .search-button,
+      .not-found-search__search-button /* youtube.com/yt Page */ {
         background-color: var(--ayt-bgc);
         border-color: var(--ayt-bc);
         border-left-width: 0;
@@ -127,130 +248,22 @@
         color: var(--ayt-tc);
       }
 
-      .search-button:hover {
+      .search-button:hover,
+      .not-found-search__search-button:hover /* youtube.com/yt Page */ {
         background-color: #ffffff1a;
         border-color: var(--ayt-bc);
       }
 
-      .search-button:active {
+      .search-button:active,
+      .not-found-search__search-button:active {
         background-color: rgb(255 255 255 / .191);
         border-color: var(--ayt-bc);
       }
 
-      .search-button-content {
+      .search-button-content,
+      .not-found-search__search-icon /* youtube.com/yt Page */ {
         filter: brightness(7);
       }
-
-  /* Colors */
-    :root {
-      --ayt-bgc: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) var(--ayt-bgc-l));
-      --ayt-tc: hsl(var(--ayt-tc-h) var(--ayt-tc-s) var(--ayt-tc-l));
-    }
-    
-    html[darker-dark-theme],     /* Applied to light mode to prevent */
-    [darker-dark-theme] [light], /* flashes of unstyled content */
-    html[darker-dark-theme][dark],
-    [darker-dark-theme] [dark] {
-      --yt-spec-text-primary: var(--ayt-tc);
-      --yt-spec-text-primary-inverse: var(--ayt-bgc);
-    }
-
-    html[system-icons][dark],
-    html[system-icons] [dark] {
-      --yt-spec-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
-      --yt-spec-brand-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-    }
-
-    html, /* Applied to light mode to prevent flashes of unstyled content */
-    html[dark],
-    [dark] {
-      --ytd-searchbox-legacy-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
-      --ytd-searchbox-legacy-button-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
-      --ytd-searchbox-legacy-button-hover-border-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.94%));
-      --ytd-searchbox-background: var(--ayt-bgc);
-      --yt-spec-base-background: var(--ayt-bgc);
-      --yt-spec-raised-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 7.06%));
-      --yt-spec-menu-background: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
-      --yt-spec-inverted-background: var(--ayt-tc);
-      --yt-spec-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-touch-response-inverse: var(--ayt-bgc);
-      --yt-spec-static-brand-black: var(--ayt-bgc);
-      --yt-spec-static-grey: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
-      --yt-spec-static-overlay-background-solid: var(--ayt-bgc);
-      --yt-spec-static-overlay-touch-response: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-static-overlay-touch-response-inverse: var(--ayt-bgc);
-      --yt-spec-snackbar-background-updated: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 3.14%));
-      --yt-spec-mono-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 9.41%));
-      --yt-spec-static-overlay-filled-hover: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 4.31%));
-
-      --yt-spec-filled-button-text: var(--ayt-bgc);
-      --ytd-searchbox-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .88);
-      --yt-spec-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 27.84%));
-      --yt-spec-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 50.2%));
-      --yt-spec-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-brand-icon-active: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-wordmark-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-static-brand-white: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-static-overlay-text-primary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-static-overlay-text-primary-inverse: var(--ayt-bgc);
-      --yt-spec-static-overlay-text-secondary: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
-      --yt-spec-static-overlay-text-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
-      --yt-spec-static-overlay-icon-active-other: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-spec-static-overlay-icon-inactive: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
-      --yt-spec-static-overlay-icon-disabled: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
-      --yt-spec-selected-nav-text: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-    }
-
-    html, /* Applied to light mode to prevent flashes of unstyled content */
-    html[dark] {
-      --yt-live-chat-action-panel-background-color-transparent: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .8);
-      --yt-live-chat-secondary-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
-      --yt-live-chat-toast-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 13.73%));
-      --yt-live-chat-mode-change-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.12%));
-      --yt-live-chat-text-input-field-inactive-underline-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 34.12%));
-      --yt-live-chat-disabled-button-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
-      --yt-live-chat-dialog-background-color: var(--ayt-bc);
-      --yt-emoji-picker-variant-selector-bg-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 12.55%));
-      --yt-live-chat-text-input-field-suggestion-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 18.43%));
-      --yt-live-chat-text-input-field-suggestion-background-color-hover: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.51%));
-      --yt-emoji-picker-search-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
-      --yt-live-chat-slider-container-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 25.88%));
-      --yt-live-chat-banner-gradient-scrim: linear-gradient(hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .95), transparent);
-      --yt-live-chat-action-panel-gradient-scrim: linear-gradient(0, hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%) / .95), transparent);
-      --yt-live-chat-vem-background-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 18.43%));
-      --yt-live-chat-product-picker-hover-color: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 20.78%));
-      background-color: var(--ayt-bgc) !important;
-
-      --yt-live-chat-secondary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
-      --yt-live-chat-tertiary-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .54);
-      --yt-live-chat-enabled-send-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-live-chat-disabled-icon-button-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
-      --yt-live-chat-picker-button-hover-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .74);
-      --yt-live-chat-mention-text-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-live-chat-deleted-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
-      --yt-live-chat-deleted-message-bar-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
-      --yt-live-chat-reconnect-message-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-emoji-picker-search-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-emoji-picker-search-placeholder-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 34.51%));
-      --yt-live-chat-slider-markers-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
-      --yt-live-chat-automod-button-explanation-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .7);
-      --yt-live-chat-product-picker-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .5);
-      --yt-live-chat-product-picker-disabled-icon-color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%) / .3);
-
-      --yt-live-chat-text-input-field-inactive-underline-color: #666; /* TEMP */
-    }
-
-    html {
-      --yt-opalescence-dark-grey: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 14.12%));
-      --yt-deprecated-luna-black: var(--ayt-bgc);
-      --yt-spec-black-1: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 9.8%));
-      --yt-spec-black-2: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 6.27%));
-      --yt-spec-black-3: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 2.75%));
-      --yt-spec-black-4: var(--ayt-bgc);
-      --yt-spec-grey-1: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 74.12%));
-      --yt-spec-grey-5: hsl(var(--ayt-bgc-h) var(--ayt-bgc-s) calc(var(--ayt-bgc-l) + 31.76%));
-    }
 
   /* Video Player */
     /* Miniplayer */
@@ -337,6 +350,27 @@
         border-color: var(--ayt-bc);
       }
 
+  /* Scrollbar */
+    ::-webkit-scrollbar {
+      background: transparent;
+      width: 16px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: var(--ayt-bgc);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-clip: content-box;
+      background-color: var(--yt-spec-text-secondary);
+      border-radius: 8px;
+      border: 4px solid transparent;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--yt-spec-icon-disabled);
+    }
+
   /* Menus */
     /* Pop-up Menus */
       ytd-menu-popup-renderer {
@@ -352,7 +386,7 @@
         background-color: var(--yt-spec-badge-chip-background);
       }
 
-      /* Sign in Pop-up */
+      /* Sign-in Pop-up */
         ytd-modal-with-title-and-button-renderer {
           background-color: var(--yt-spec-base-background);
           border-radius: 12px;
@@ -393,7 +427,7 @@
           box-shadow: inset 0 0 0 1px var(--ayt-bc) !important;
         }
 
-        /* Keyboard shortcuts Pop-up */
+        /* Keyboard Shortcuts Pop-up */
           /* Row Borders */
             ytd-hotkey-dialog-section-option-renderer {
               border-top-color: var(--ayt-bc);
@@ -589,7 +623,7 @@
           border-color: var(--ayt-bc);
         }
 
-    /* Blue Text Sign in Buttons */
+    /* Blue Text Sign-in Buttons */
       /* Border */
         .yt-spec-button-shape-next--call-to-action.yt-spec-button-shape-next--outline,
         .yt-spec-button-shape-next--call-to-action.yt-spec-button-shape-next--outline:hover {
@@ -663,7 +697,7 @@
       }
 
   /* Tooltips */
-    /* Comments Sort by Tooltip */
+    /* Comments "Sort by" Button Tooltip */
       #sort-menu #tooltip {
         white-space: nowrap;
       }
@@ -776,13 +810,25 @@
         color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%));
       }
 
-    /* White-text Sign in Button */
+    /* White-text Sign-in Button */
       .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--outline,
       .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--outline:hover {
         border-color: var(--ayt-bc);
       }
 
   /* Sidebar */
+    /* Selected Button */
+      ytd-guide-entry-renderer[active] {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px var(--ayt-bc);
+      }
+
+    /* Account Page Sidebar Selected Button */
+      ytd-compact-link-renderer[compact-link-style=compact-link-style-type-settings-sidebar][active] {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px var(--ayt-bc);
+      }
+
     /* Borders */
       ytd-guide-collapsible-section-entry-renderer.ytd-guide-section-renderer:not(:first-child) {
         border-top-color: var(--ayt-bc);
@@ -801,6 +847,12 @@
       ytd-rich-shelf-renderer {
         border-top-color: var(--ayt-bc);
       }
+
+      /* Border Through "Show more" Button */
+        ytd-rich-shelf-renderer[use-show-more-button-overlapping-divider]:not([is-show-more-hidden]) #dismissible.ytd-rich-shelf-renderer,
+        ytd-rich-shelf-renderer[use-show-more-button-overlapping-divider][use-show-less-button-overlapping-divider] #dismissible.ytd-rich-shelf-renderer {
+          border-bottom-color: var(--ayt-bc);
+        }
 
       /* Expanded Border */
         ytd-rich-shelf-renderer[is-show-more-hidden] #dismissible.ytd-rich-shelf-renderer {
@@ -825,7 +877,7 @@
           color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%)) !important;
         }
 
-        /* Show more Button */
+        /* "Show more" Button */
           #show-more-button button {
             border-color: var(--ayt-bc) !important;
             color: var(--yt-spec-text-primary) !important;
@@ -836,12 +888,12 @@
           box-shadow: inset 0 0 0 1px var(--ayt-bc);
         }
 
-      /* What did you think of this video? Panel */
+      /* "What did you think of this video?" Panel */
         #inline-survey-compact-video-renderer.ytd-inline-survey-renderer {
           background-color: var(--yt-spec-base-background);
         }
 
-        /* Please tell us more Buttons */
+        /* "Please tell us more" Buttons */
           ytd-checkbox-survey-option-renderer.ytd-inline-survey-renderer {
             background-color: var(--yt-spec-base-background);
           }
@@ -868,7 +920,7 @@
           border-bottom-color: var(--ayt-bc);
         }
 
-      /* Channel Home Tab Sections Borders */
+      /* Channel Home Tab Section Borders */
         ytd-section-list-renderer/*
       */:not([hide-bottom-separator])/*
       */:not([page-subtype=history])/*
@@ -883,18 +935,18 @@
       */:not([has-section-group-view-model]) {
           border-bottom-color: var(--ayt-bc);
         }
-        
-      /* Channel Community Tab Posts Borders */
+
+      /* Channel Community Tab Post Borders */
         ytd-backstage-post-thread-renderer {
           border-color: var(--ayt-bc);
         }
-      
+
       /* Channel About Tab */
-        /* Stats Borders */
+        /* Stat Borders */
           #right-column.ytd-channel-about-metadata-renderer > yt-formatted-string.ytd-channel-about-metadata-renderer {
             border-color: var(--ayt-bc);
           }
-        
+
         /* Sections */
           #description-container.ytd-channel-about-metadata-renderer,
           #bio-container.ytd-channel-about-metadata-renderer,
@@ -930,7 +982,7 @@
         }
 
   /* Library Page */
-    /* Stats Borders */
+    /* Stat Borders */
       #items.ytd-profile-column-stats-renderer > *.ytd-profile-column-stats-renderer:first-child,
       #items.ytd-profile-column-stats-renderer > *.ytd-profile-column-stats-renderer {
         border-color: var(--ayt-bc);
@@ -982,6 +1034,15 @@
         box-shadow: inset 0 0 0 1px var(--ayt-bc);
       }
 
+      /* FAQ Buttons */
+        .yt-lp-faq-entry-view-model:hover [class$=icon-hover-highlighting] {
+          background-color: var(--yt-spec-badge-chip-background);
+        }
+
+        .yt-lp-faq-entry-view-model:active [class$=icon-hover-highlighting] {
+          background-color: rgb(255 255 255 / .191);
+        }
+
       /* Entry Borders */
         .yt-lp-faq-entry-view-model {
           border-bottom-color: var(--ayt-bc);
@@ -992,7 +1053,7 @@
         border-bottom-color: var(--ayt-bc);
       }
 
-  /* Report history Page */
+  /* Report History Page */
     /* Section Border */
       #unified-report-history.ytd-report-history-section-renderer {
         border-top-color: var(--ayt-bc);
@@ -1019,19 +1080,61 @@
         ytd-item-section-renderer[static-comments-header] #header.ytd-item-section-renderer {
           background-color: var(--yt-spec-base-background);
         }
-      
+
       /* Footer Border */
         ytd-comments-header-renderer[engagement-panel] {
           border-top-color: var(--ayt-bc);
         }
 
-    /* Add a comment Box Border */
+    /* "Add a comment..." Box Border */
       #placeholder-area.ytd-comment-simplebox-renderer {
         border-bottom-color: var(--ayt-bc);
       }
 
     /* Main Watch Page */
       /* Primary Column */
+        /* Context Panel */
+          ytd-info-panel-container-renderer {
+            border-color: var(--ayt-bc);
+          }
+
+          ytd-info-panel-container-renderer:is([background=GRAY], [background=OVERLAY_BLACK]),
+          ytd-info-panel-container-renderer[amsterdam-enabled] {
+            box-shadow: inset 0 0 0 1px var(--ayt-bc);
+          }
+
+          /* Header */
+            ytd-info-panel-container-renderer:is([background=BLUE], [background=GRAY]) .header.ytd-info-panel-container-renderer {
+              background-color:  transparent;
+            }
+
+          /* Content */
+            ytd-info-panel-content-renderer[has-menu] {
+              background-color: transparent;
+              border-color: var(--ayt-bc);
+            }
+
+            ytd-info-panel-content-renderer[has-menu][background=OVERLAY_BLACK] {
+              background-color: transparent;
+              box-shadow: inset 0 0 0 1px var(--ayt-bc);
+            }
+
+            ytd-info-panel-content-renderer[background=OVERLAY_BLACK],
+            ytd-info-panel-content-renderer:is([background=BLUE], [background=GRAY]) .content.ytd-info-panel-content-renderer {
+              background-color: transparent;
+            }
+
+            /* Vertical Dividers */
+              ytd-info-panel-content-renderer[show-vertical-dividers] .text-content.ytd-info-panel-content-renderer {
+                border-right-color: var(--ayt-bc);
+              }
+
+          /* Divider */
+            ytd-info-panel-container-renderer[amsterdam-enabled][background=BLUE] .divider-offset.ytd-info-panel-container-renderer,
+            .divider.ytd-info-panel-container-renderer {
+              border-top-color: var(--ayt-bc);
+            }
+
         /* Top Row */
           /* Border */
             #top-row.ytd-watch-metadata[style*="border-bottom:"] {
@@ -1154,7 +1257,7 @@
             background-color: var(--yt-spec-base-background);
           }
 
-        /* Create clip Panel */
+        /* Create Clip Panel */
           #container.yt-clip-creation-renderer {
             background-color: var(--yt-spec-base-background);
           }
@@ -1224,7 +1327,7 @@
               box-shadow: inset 0 0 0 1px var(--ayt-bc);
             }
 
-          /* Live Chat Celebrate the first Super Chat Card */
+          /* Live Chat "Celebrate the first Super Chat from" Card */
             #bumper-content.yt-bumper-user-edu-content-view-model {
               background-color: var(--yt-spec-base-background);
               box-shadow: inset 0 0 0 1px var(--ayt-bc);
@@ -1314,17 +1417,17 @@
         background-color: rgb(255 255 255 / .191) !important;
       }
 
-      /* load / open / save Buttons */
+      /* Load / Open / Save Buttons */
         .ycs-infobar__search button {
           box-shadow: inset 0 0 0 1px var(--ayt-bc);
         }
 
-      /* Segmented Load all Button*/
+      /* Segmented Load All Button*/
         #ycs-load-all {
           border-radius: 18px 18px 0 0;
         }
 
-      /* Segmented stop Button */
+      /* Segmented Stop Button */
         .ycs_btn_load-stop {
           background-color: var(--yt-spec-base-background) !important;
           border-color: var(--ayt-bc) !important;
@@ -1344,7 +1447,7 @@
           background-color: rgb(255 255 255 / .191) !important;
         }
 
-      /* How to use Button */
+      /* "How to use" Question Mark Button */
         .ycs-ext-search_link {
           color: var(--yt-spec-text-primary) !important;
         }
@@ -1443,13 +1546,20 @@
 
     /* Search Results */
       /* Scrollbar */
+        #ycs-search-result::-webkit-scrollbar {
+          width: 16px !important;
+        }
+
         #ycs-search-result::-webkit-scrollbar-track {
-          background: transparent !important;
-          border-radius: 8px;
+          background: var(--ayt-bgc) !important;
         }
 
         #ycs-search-result::-webkit-scrollbar-thumb {
-          border-radius: 8px;
+          background: content-box var(--yt-spec-text-secondary) !important;
+        }
+
+        #ycs-search-result::-webkit-scrollbar-thumb:hover {
+          background-color: var(--yt-spec-icon-disabled) !important;
         }
 
       /* Replies Borders */
@@ -1457,10 +1567,12 @@
           border-bottom-color: var(--ayt-bc) !important;
         }
 
-      /* Show more Button */
+      /* "Show more, found comments" Button */
         .ycs-show_more_block {
           background-color: var(--yt-spec-base-background) !important;
-          border-color: var(--ayt-bc) !important;
+          border-bottom-width: 1px !important;
+          border-color: transparent !important;
+          border-radius: 12px;
           box-shadow: inset 0 0 0 1px var(--ayt-bc);
           color: var(--yt-spec-text-primary) !important;
         }
