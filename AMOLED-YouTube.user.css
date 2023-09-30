@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.09.29
+@version        2023.09.29.22.10
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -1346,6 +1346,11 @@
             yt-live-chat-toast-renderer[is-showing-message] {
               background-color: var(--yt-spec-base-background);
               box-shadow: inset 0 1px var(--ayt-bc);
+            }
+
+          /* Live Chat Owner Message */
+            yt-live-chat-text-message-renderer[author-is-owner] {
+              background-color: var(--yt-spec-base-background);
             }
 
           /* Show Support Buttons */
