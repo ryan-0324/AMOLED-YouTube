@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.09.29.22.10
+@version        2023.09.30
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -1206,6 +1206,20 @@
                 color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) + 5.49%)) !important;
               }
 
+            /* Inline Styled Links */
+              .yt-core-attributed-string--highlight-text-decorator[style*="background-color: rgba(255,255,255,0.102)"] {
+                background-color: var(--yt-spec-base-background) !important;
+                box-shadow: inset 0 0 0 1px var(--ayt-bc);
+              }
+
+              .yt-core-attributed-string--highlight-text-decorator[style*="background-color: rgba(255,255,255,0.102)"]:hover {
+                background-color: var(--yt-spec-badge-chip-background) !important;
+              }
+
+              .yt-core-attributed-string--highlight-text-decorator[style*="background-color: rgba(255,255,255,0.102)"]:active {
+                background-color: rgb(255 255 255 / .191) !important;
+              }
+
             /* Transcript Section Divider */
               ytd-video-description-transcript-section-renderer {
                 border-top-color: var(--ayt-bc);
@@ -1379,6 +1393,18 @@
               box-shadow: inset 0 0 0 1px var(--ayt-bc);
             }
 
+        /* New Video Badges */
+          .badge-style-type-simple.ytd-badge-supported-renderer {
+            background-color: var(--yt-spec-base-background);
+            box-shadow: inset 0 0 0 1px var(--ayt-bc);
+          }
+
+        /* "Free with ads" Video Badges */
+          .badge-style-type-ypc.ytd-badge-supported-renderer {
+            background-color: var(--yt-spec-base-background);
+            box-shadow: inset 0 0 0 1px var(--ayt-bc);
+          }
+
     /* Shorts Watch Page */
       /* Reel Video Player Panel */
         .player-container.ytd-reel-video-renderer {
@@ -1502,8 +1528,9 @@
 
           /* FAQ Code Blocks */
             .ycs_modal_body code {
-              background-color: var(--yt-spec-badge-chip-background);
+              background-color: var(--yt-spec-base-background);
               border-radius: 2px;
+              box-shadow: inset 0 0 0 1px var(--ayt-bc);
               color: var(--yt-spec-text-secondary) !important;
             }
 
