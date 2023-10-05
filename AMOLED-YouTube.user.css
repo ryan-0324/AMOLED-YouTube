@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.05.16.00
+@version        2023.10.05.18.40
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -186,6 +186,16 @@
         }
 
       /* Loading Placeholders */
+        html:is(*, [dark]):is(
+        [ghost-cards-diffuse-1],
+        [ghost-cards-diffuse-2],
+        [ghost-cards-diffuse-3],
+        [ghost-cards-1],
+        [ghost-cards-2],
+        [ghost-cards-3]) .skeleton-bg-color {
+          background-image: none;
+        }
+
         .skeleton-bg-color.ytd-ghost-grid-renderer {
           background-color: var(--ayt-bgc);
           box-shadow: inset 0 0 0 1px var(--ayt-bc);
@@ -1424,6 +1434,22 @@
                 border-top-color: var(--ayt-bc);
               }
 
+            /* Music Section */
+              /* Divider */
+                ytd-video-description-music-section-renderer {
+                  border-top-color: var(--ayt-bc);
+                }
+
+              /* Row Borders */
+                ytd-info-row-renderer {
+                  border-bottom-color: var(--ayt-bc);
+                }
+
+              /* Music Topic Channel Button */
+                #topic-link-container.ytd-topic-link-renderer {
+                  border-color: var(--ayt-bc);
+                }
+
             /* Music Panels */
               ytd-compact-video-renderer[music-metadata-video-lockup] {
                 background-color: var(--yt-spec-base-background);
@@ -1462,6 +1488,7 @@
       /* Secondary Column */
         /* Panel Borders */
           ytd-engagement-panel-section-list-renderer {
+            background-color: var(--yt-spec-base-background);
             border-color: var(--ayt-bc);
           }
 
@@ -1653,6 +1680,7 @@
   /* YouTube Comment Search
      github.com/sonigy/YCS  */
     .ycs-app {
+      background-color: var(--yt-spec-base-background);
       border-color: var(--ayt-bc) !important;
       border-radius: 12px;
       color: var(--yt-spec-text-primary) !important;
