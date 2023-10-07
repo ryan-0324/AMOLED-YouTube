@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.05.18.40
+@version        2023.10.07
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -10,7 +10,7 @@
 @license        MIT
 @preprocessor   default
 
-@var select ayt-oefd  "Override Chrome's #enable-force-dark flag?" { "Yes": "only light", "No*": "initial" }
+@var select ayt-oefd  "Override Chrome's #enable-force-dark flag?" { "Yes": "only light", "No*": "revert" }
 @var range  ayt-bgc-h "Background color hue"                       [0, 0, 360, 0.01, "deg"]
 @var range  ayt-bgc-s "Background color saturation"                [0, 0, 100, 0.01, "%"]
 @var range  ayt-bgc-l "Background color lightness"                 [0, 0, 100, 0.01, "%"]
@@ -1123,7 +1123,7 @@
   /* Playlist Page */
     /* Playlist Background */
       .immersive-header-gradient.ytd-playlist-header-renderer {
-        filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='_'><feFlood flood-color='%230f0f0f'/><feBlend mode='difference' in2='SourceGraphic'/></filter><svg/>#_");
+        filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='_'><feFlood flood-color='%230f0f0f'/><feBlend mode='difference' in2='SourceGraphic'/></filter></svg>#_");
       }
 
     /* Unavailable Videos Hidden Notice */
@@ -1162,57 +1162,71 @@
         }
 
       /* "Ad-free" Image */
-        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_phone_200x148.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_tablet_200x148.webp"]) {
+        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_phone_200x148.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_tablet_200x148.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_phone_200x148.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 148'><path d='M0 0h200v148H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 148'><path d='M0 0h200v148H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Download videos" Image */
-        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_phone_200x169.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_tablet_200x169.webp"]) {
+        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_phone_200x169.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_tablet_200x169.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_phone_200x169.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 169'><path d='M0 0h200v169H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 169'><path d='M0 0h200v169H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Background play so you can" Image */
-        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_phone_200x255.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_tablet_200x255.webp"]) {
+        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_phone_200x255.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_tablet_200x255.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_phone_200x255.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 255'><path d='M0 0h200v255H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 255'><path d='M0 0h200v255H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Stream all the music" Image */
-        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_phone_200x168.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_tablet_200x168.webp"]) {
+        .ytm-lp-small-feature-section-view-model-c3__feature-image-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_phone_200x168.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_tablet_200x168.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_phone_200x168.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 168'><path d='M0 0h200v168H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 168'><path d='M0 0h200v168H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Unlimited ad-free videos" Image */
-        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_tablet_632x455.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_phone_632x455.webp"]) {
+        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_tablet_632x455.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_phone_632x455.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_tablet_632x455.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 455'><path d='M0 0h632v455H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 455'><path d='M0 0h632v455H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Enjoy videos offline" Image */
-        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_tablet_632x615.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_phone_632x615.webp"]) {
+        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_tablet_632x615.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_phone_632x615.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_tablet_632x615.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 615'><path d='M0 0h632v615H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 615'><path d='M0 0h632v615H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
 
       /* "Background play" Image */
-        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is([src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_tablet_632x624.webp"], [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_phone_632x624.webp"]) {
+        .yt-lp-large-feature-section-view-model__lp-large-feature-section-container img:is(
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_tablet_632x624.webp"],
+        [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_phone_632x624.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_tablet_632x624.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 624'><path d='M0 0h632v624H0V0'/></svg>");
+                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 624'><path d='M0 0h632v624H0z'/></svg>");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
