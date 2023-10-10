@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.07
+@version        2023.10.10
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -977,8 +977,8 @@
 
           /* YouTube Logo */
             #metadata-container.ytd-statement-banner-renderer #logo-image.ytd-statement-banner-renderer {
-              filter: drop-shadow(0 200vh var(--yt-spec-static-brand-white));
-              transform: translateY(-200vh);
+              filter: drop-shadow(0 200lvh var(--yt-spec-static-brand-white));
+              transform: translateY(-200lvh);
             }
 
           /* Inline Styled Text */
@@ -1123,7 +1123,14 @@
   /* Playlist Page */
     /* Playlist Background */
       .immersive-header-gradient.ytd-playlist-header-renderer {
-        filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='_'><feFlood flood-color='%230f0f0f'/><feBlend mode='difference' in2='SourceGraphic'/></filter></svg>#_");
+        filter: url("data:image/svg+xml,\
+          <svg xmlns='http://www.w3.org/2000/svg'>\
+            <filter id='_'>\
+              <feFlood flood-color='%230f0f0f'/>\
+              <feBlend mode='difference' in2='SourceGraphic'/>\
+            </filter>\
+          </svg>\
+        #_");
       }
 
     /* Unavailable Videos Hidden Notice */
@@ -1141,10 +1148,27 @@
       }
 
   /* Premium Page */
-    yt-unlimited-page-header-renderer {
-      background-color: var(--yt-spec-base-background);
-      background-image: none !important;
-    }
+    /* Header */
+      yt-unlimited-page-header-renderer {
+        background-color: var(--yt-spec-base-background);
+        background-image: none !important;
+      }
+
+      /* YouTube Premium Logo */
+        #logo.yt-unlimited-page-header-renderer {
+          position: relative;
+        }
+
+        #logo.yt-unlimited-page-header-renderer::before {
+          background: 100% no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/ytr_lp2_logo_premium_desktop_552x71.png");
+          content: "";
+          filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
+          width: calc(38900% / 552);
+          height: 100%;
+          position: absolute;
+          right: 0;
+          transform: translateY(-200lvh);
+        }
 
     /* Inline Styled Black Text */
       :is(#subtitle.yt-unlimited-page-header-renderer,
@@ -1166,7 +1190,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_phone_200x148.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_tablet_200x148.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_Ad-free_dark_phone_200x148.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 148'><path d='M0 0h200v148H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 148'>\
+                <path d='M0 0h200v148H0z'/>\
+                </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1176,7 +1204,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_phone_200x169.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_tablet_200x169.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_DownloadMultiple_dark_phone_200x169.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 169'><path d='M0 0h200v169H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 169'>\
+                <path d='M0 0h200v169H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1186,7 +1218,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_phone_200x255.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_tablet_200x255.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_PictureInPicture_dark_phone_200x255.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 255'><path d='M0 0h200v255H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 255'>\
+                <path d='M0 0h200v255H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1196,7 +1232,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_phone_200x168.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_tablet_200x168.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_small_feature_UnlimitedMusic_dark_phone_200x168.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 168'><path d='M0 0h200v168H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 200 168'>\
+                <path d='M0 0h200v168H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1206,7 +1246,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_tablet_632x455.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_phone_632x455.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_AdFree_dark_tablet_632x455.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 455'><path d='M0 0h632v455H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 455'>\
+                <path d='M0 0h632v455H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1216,7 +1260,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_tablet_632x615.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_phone_632x615.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_UnlimitedDownloads_dark_tablet_632x615.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 615'><path d='M0 0h632v615H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 615'>\
+                <path d='M0 0h632v615H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1226,7 +1274,11 @@
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_tablet_632x624.webp"],
         [src="https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_phone_632x624.webp"]) {
           background: center / contain no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/premium_lp2_large_feature_BackgroundPlay_dark_tablet_632x624.webp"),
-                      center / contain no-repeat url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 624'><path d='M0 0h632v624H0z'/></svg>");
+            center / contain no-repeat url("data:image/svg+xml,\
+              <svg xmlns='http://www.w3.org/2000/svg' fill='%230f0f0f' viewBox='0 0 632 624'>\
+                <path d='M0 0h632v624H0z'/>\
+              </svg>\
+            ");
           background-blend-mode: difference;
           content: var(--ayt-img);
         }
@@ -1571,14 +1623,19 @@
             }
 
         /* Playlist Panel */
-          /* Border */
-            #container.ytd-playlist-panel-renderer {
-              border-color: var(--ayt-bc);
-            }
+          #container.ytd-playlist-panel-renderer {
+            background-color: var(--yt-spec-base-background);
+            border-color: var(--ayt-bc);
+          }
 
           /* Header */
             .header.ytd-playlist-panel-renderer {
-              background-color: var(--yt-spec-base-background);
+              background-color: transparent;
+            }
+
+          /* Playlist Items */
+            .playlist-items.ytd-playlist-panel-renderer {
+              background-color: transparent;
             }
 
         /* Live Chat Panel */
@@ -1652,7 +1709,7 @@
               box-shadow: inset 0 0 0 1px var(--ayt-bc);
             }
 
-        /* New / Closed Captions Video Badges */
+        /* New / Closed Captions / "Learning playlist" Video / Playlist Badges */
           .badge-style-type-simple.ytd-badge-supported-renderer {
             background-color: var(--yt-spec-base-background);
             box-shadow: inset 0 0 0 1px var(--ayt-bc);
@@ -1734,7 +1791,6 @@
           border-radius: 0 0 18px 18px;
           border-top-width: 0 !important;
           color: var(--yt-spec-text-primary) !important;
-          position: static;
           text-transform: capitalize;
         }
 
@@ -1749,7 +1805,27 @@
 
       /* "How to use" Question Mark Button */
         .ycs-ext-search_link {
-          color: var(--yt-spec-text-primary) !important;
+          color: transparent !important;
+          display: inline;
+          font-size: 14px;
+          padding: 0 8px;
+          position: relative;
+          user-select: none;
+        }
+
+        .ycs-ext-search_link::before {
+          background: center no-repeat url("data:image/svg+xml,\
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+              <path d='M15.36 9.96c0 1.09-.67 1.67-1.31 2.24-.53.47-1.03.9-1.16 1.6l-.04.2H11.1l.03-.28c.14-1.17.8-1.76 1.47-2.27.52-.4 1.01-.77 1.01-1.49 0-.51-.23-.97-.63-1.29-.4-.31-.92-.42-1.42-.29-.59.15-1.05.67-1.19 1.34l-.05.28H8.57l.06-.42c.2-1.4 1.15-2.53 2.42-2.87 1.05-.29 2.14-.08 2.98.57.85.64 1.33 1.62 1.33 2.68zM12 18c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm0-15c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z'/>\
+            </svg>\
+          ");
+          content: "";
+          width: 100%;
+          height: 100%;
+          inset: 0;
+          position: absolute;
+          filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
+          transform: translateY(-200lvh);
         }
 
       /* Open FAQ Button */
@@ -1800,23 +1876,173 @@
             }
 
           /* Close FAQ Button */
-            .ycs_btn_close:not(:hover) {
-              background-color: var(--yt-spec-base-background);
-              border-radius: 18px;
-              box-shadow: inset 0 0 0 1px var(--ayt-bc);
-              color: var(--yt-spec-text-primary);
+            .ycs_btn_close:is(*, :focus, :hover) {
+              background: transparent;
+              color: transparent;
+              position: relative;
             }
 
-            .ycs_btn_close:hover {
-              background-color: var(--yt-spec-badge-chip-background);
-              border-radius: 18px;
-              box-shadow: inset 0 0 0 1px var(--ayt-bc);
-              color: var(--yt-spec-text-primary);
+            .ycs_btn_close:is(*, :focus, :hover)::after {
+              background: center no-repeat url("data:image/svg+xml,\
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+                  <path d='m12.71 12 8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z'/>\
+                </svg>\
+              ");
+              content: "";
+              filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
+              width: 100%;
+              height: 100%;
+              inset: 0;
+              position: absolute;
+              transform: translateY(-200lvh);
             }
 
-            .ycs_btn_close:active {
-              background-color: rgb(255 255 255 / .191);
+            .ycs_btn_close::before {
+              background-color: var(--yt-spec-touch-response);
+              border: 1px solid var(--ayt-bc);
+              border-radius: 50%;
+              content: "";
+              width: calc(4000% / 49);
+              height: 100%;
+              inset: 0 calc(900% / 98);
+              opacity: 0;
+              position: absolute;
             }
+
+            .ycs_btn_close:active::before {
+              opacity: .1;
+            }
+
+      /* Extended Search Checkbox Button */
+        .ycs-app input[type="checkbox" i] {
+          container-type: size;
+          position: relative;
+        }
+
+        .ycs-app input[type="checkbox" i][disabled] {
+          opacity: .5;
+        }
+
+        .ycs-app input[type="checkbox" i][disabled] + span {
+          opacity: .65;
+        }
+
+        .ycs-app input[type="checkbox" i]:not([disabled]) {
+          cursor: pointer;
+        }
+
+        .ycs-app input[type="checkbox" i]::before {
+          background: var(--yt-spec-base-background);
+          border: solid var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+          border-radius: 10%;
+          content: "";
+          width: 100%;
+          height: 100%;
+          inset: 0;
+          position: absolute;
+          transition: background-color 140ms, border-color 140ms;
+          transition-duration: var(--paper-checkbox-animation-duration, 140ms);
+        }
+
+        .ycs-app input[type="checkbox" i]:checked::before {
+          background: var(--paper-checkbox-checked-color, var(--primary-color));
+          border-color: var(--paper-checkbox-checked-color, var(--primary-color));
+        }
+
+        .ycs-app input[type="checkbox" i][disabled]:checked::before {
+          background: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+          border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        }
+
+        .ycs-app input[type="checkbox" i]:checked::after {
+          animation: checkmark-expand 140ms ease-out forwards;
+          animation-duration: var(--paper-checkbox-animation-duration, 140ms);
+          border: solid var(--paper-checkbox-checkmark-color, white);
+          border-top: none;
+          border-left: none;
+          box-sizing: content-box;
+          content: "";
+          width: 36%;
+          height: 70%;
+          position: absolute;
+          transform: matrix(.707107, .707107, -.707107, .707107, 0, 0);
+          transform-origin: 97% 86%;
+        }
+
+        @container (min-width: 0) {
+          .ycs-app input[type="checkbox" i]::before {
+            border-width: 10cqw;
+          }
+
+          .ycs-app input[type="checkbox" i]:checked::after {
+            border-right-width: calc(2 / 15 * 100cqw);
+            border-bottom-width: calc(2 / 15 * 100cqw);
+          }
+        }
+
+      /* Title / Main Radio Buttons */
+        .ycs-app input[type="radio" i] {
+          container-type: size;
+          position: relative;
+        }
+
+        .ycs-app input[type="radio" i][disabled] {
+          opacity: .5;
+        }
+
+        .ycs-app input[type="radio" i][disabled] + span {
+          opacity: .65;
+        }
+
+        .ycs-app input[type="radio" i]:not([disabled]) {
+          cursor: pointer;
+        }
+
+        .ycs-app input[type="radio" i]::before {
+          background: var(--yt-spec-base-background);
+          border: solid var(--paper-radio-button-unchecked-color, var(--primary-text-color));
+          border-radius: 50%;
+          content: "";
+          width: 100%;
+          height: 100%;
+          inset: 0;
+          position: absolute;
+        }
+
+        .ycs-app input[type="radio" i]:checked::before {
+          border-color: var(--paper-radio-button-checked-color, var(--primary-color));
+        }
+
+        .ycs-app input[type="radio" i][disabled]:checked::before {
+          border-color: var(--paper-radio-button-unchecked-color, var(--primary-text-color));
+        }
+
+        .ycs-app input[type="radio" i]::after {
+          border-radius: 50%;
+          content: "";
+          width: 100%;
+          height: 100%;
+          inset: 0;
+          position: absolute;
+          transform: scale(0);
+          transition: transform ease .28s;
+          will-change: transform;
+        }
+
+        .ycs-app input[type="radio" i]:checked::after {
+          background: var(--paper-radio-button-checked-color, var(--primary-color));
+          transform: scale(.5);
+        }
+
+        .ycs-app input[type="radio" i][disabled]:checked::after {
+          background: var(--paper-radio-button-unchecked-color, var(--primary-text-color));
+        }
+
+        @container (min-width: 0) {
+          .ycs-app input[type="radio" i]::before {
+            border-width: 10cqw;
+          }
+        }
 
     /* Search Box */
       .ycs-search__input {
