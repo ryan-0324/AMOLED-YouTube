@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.10
+@version        2023.10.11
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -224,12 +224,31 @@
       text-shadow: none;
     }
 
-    .logo {
-      background-image: url(//www.gstatic.com/youtube/img/branding/youtubelogo/1x/youtubelogo_dark_30.png);
+    .logo,
+    .not-found-search__container /* youtube.com/yt Page */ {
+      position: relative;
     }
 
-    .not-found-search__logo /* youtube.com/yt Page */ {
-      content: url(//www.gstatic.com/youtube/img/branding/youtubelogo/1x/youtubelogo_dark_30.png);
+    .logo::before,
+    .not-found-search__container::before /* youtube.com/yt Page */ {
+      background: 100% / calc(49200% / 319) no-repeat;
+      content: "";
+      filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
+      width: calc(31900% / 492);
+      height: 100%;
+      position: absolute;
+      right: 0;
+      transform: translateY(-200lvh);
+    }
+
+    .logo::before {
+      background-position: 100% 0%;
+    }
+
+    .logo,
+    .logo::before,
+    .not-found-search__container::before /* youtube.com/yt Page */ {
+      background-image: url("https://kstatic.googleusercontent.com/files/936c9d53b930432184bd6bee3004494e5ba78d0e89ec25541a572e43256947fcad73b01bfac658cb2ffc3663488781b43f9fec9f56ec9b9150d757603b410201");
     }
 
     /* Search Box */
@@ -263,6 +282,7 @@
         border-left-width: 0;
         border-radius: 0 18px 18px 0;
         color: var(--ayt-tc);
+        outline-offset: -2px;
       }
 
       .search-button:hover,
@@ -272,9 +292,13 @@
       }
 
       .search-button:active,
-      .not-found-search__search-button:active {
+      .not-found-search__search-button:active /* youtube.com/yt Page */ {
         background-color: rgb(255 255 255 / .191);
         border-color: var(--ayt-bc);
+      }
+
+      .not-found-search__search-button:not(:focus-visible) /* youtube.com/yt Page */ {
+        outline: none;
       }
 
       .search-button-content,
@@ -977,7 +1001,7 @@
 
           /* YouTube Logo */
             #metadata-container.ytd-statement-banner-renderer #logo-image.ytd-statement-banner-renderer {
-              filter: drop-shadow(0 200lvh var(--yt-spec-static-brand-white));
+              filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
               transform: translateY(-200lvh);
             }
 
@@ -1160,9 +1184,9 @@
         }
 
         #logo.yt-unlimited-page-header-renderer::before {
-          background: 100% no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/ytr_lp2_logo_premium_desktop_552x71.png");
+          background: 100% 0% / calc(55200% / 389) no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/ytr_lp2_logo_premium_desktop_552x71.png");
           content: "";
-          filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
+          filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
           width: calc(38900% / 552);
           height: 100%;
           position: absolute;
@@ -1782,6 +1806,7 @@
       /* Segmented Load All Button*/
         #ycs-load-all {
           border-radius: 18px 18px 0 0;
+          outline-offset: -1px;
         }
 
       /* Segmented Stop Button */
@@ -1914,6 +1939,10 @@
             }
 
       /* Extended Search Checkbox Button */
+        .ycs-app label:has(input[type="checkbox" i]:not([disabled])) {
+          cursor: pointer;
+        }
+
         .ycs-app input[type="checkbox" i] {
           container-type: size;
           position: relative;
@@ -1933,7 +1962,7 @@
 
         .ycs-app input[type="checkbox" i]::before {
           background: var(--yt-spec-base-background);
-          border: solid var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+          border: 1px solid var(--paper-checkbox-unchecked-color, var(--primary-text-color));
           border-radius: 10%;
           content: "";
           width: 100%;
@@ -1958,6 +1987,7 @@
           animation: checkmark-expand 140ms ease-out forwards;
           animation-duration: var(--paper-checkbox-animation-duration, 140ms);
           border: solid var(--paper-checkbox-checkmark-color, white);
+          border-width: 0 1px 1px 0;
           border-top: none;
           border-left: none;
           box-sizing: content-box;
@@ -1975,12 +2005,15 @@
           }
 
           .ycs-app input[type="checkbox" i]:checked::after {
-            border-right-width: calc(2 / 15 * 100cqw);
-            border-bottom-width: calc(2 / 15 * 100cqw);
+            border-width: 0 calc(2 / 15 * 100cqw) calc(2 / 15 * 100cqw) 0;
           }
         }
 
       /* Title / Main Radio Buttons */
+        .ycs-app label:has(input[type="radio" i]:not([disabled])) {
+          cursor: pointer;
+        }
+
         .ycs-app input[type="radio" i] {
           container-type: size;
           position: relative;
@@ -2000,7 +2033,7 @@
 
         .ycs-app input[type="radio" i]::before {
           background: var(--yt-spec-base-background);
-          border: solid var(--paper-radio-button-unchecked-color, var(--primary-text-color));
+          border: 1px solid var(--paper-radio-button-unchecked-color, var(--primary-text-color));
           border-radius: 50%;
           content: "";
           width: 100%;
@@ -2061,8 +2094,8 @@
       }
 
       /* Search Category Drop-down Menu*/
-        .ycs-search-select {
-          border-radius: 0;
+        #ycs_search_select {
+          outline-offset: -1px;
         }
 
         /* List */
