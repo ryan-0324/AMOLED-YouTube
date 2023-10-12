@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.11
+@version        2023.10.12
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -224,12 +224,12 @@
       text-shadow: none;
     }
 
-    .logo,
+    #error-page .logo,
     .not-found-search__container /* youtube.com/yt Page */ {
       position: relative;
     }
 
-    .logo::before,
+    #error-page .logo::before,
     .not-found-search__container::before /* youtube.com/yt Page */ {
       background: 100% / calc(49200% / 319) no-repeat;
       content: "";
@@ -241,18 +241,18 @@
       transform: translateY(-200lvh);
     }
 
-    .logo::before {
+    #error-page .logo::before {
       background-position: 100% 0%;
     }
 
-    .logo,
-    .logo::before,
+    #error-page .logo,
+    #error-page .logo::before,
     .not-found-search__container::before /* youtube.com/yt Page */ {
       background-image: url("https://kstatic.googleusercontent.com/files/936c9d53b930432184bd6bee3004494e5ba78d0e89ec25541a572e43256947fcad73b01bfac658cb2ffc3663488781b43f9fec9f56ec9b9150d757603b410201");
     }
 
     /* Search Box */
-      #masthead-search-terms-border,
+      #error-page #masthead-search-terms-border,
       .not-found-search__field /* youtube.com/yt Page */ {
         background-color: var(--ayt-bgc);
         border-color: var(--ayt-bc);
@@ -265,17 +265,17 @@
         border-color: var(--ayt-sbfbc);
       }
 
-      #masthead-search-terms,
+      #error-page #masthead-search-terms,
       .not-found-search__input /* youtube.com/yt Page */ {
         color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 6.67%));
       }
 
-      #masthead-search-terms::-webkit-input-placeholder,
+      #error-page #masthead-search-terms::-webkit-input-placeholder,
       .not-found-search__input::-webkit-input-placeholder /* youtube.com/yt Page */ {
         color: hsl(var(--ayt-tc-h) var(--ayt-tc-s) calc(var(--ayt-tc-l) - 41.18%));
       }
 
-      .search-button,
+      #error-page .search-button,
       .not-found-search__search-button /* youtube.com/yt Page */ {
         background-color: var(--ayt-bgc);
         border-color: var(--ayt-bc);
@@ -285,13 +285,13 @@
         outline-offset: -2px;
       }
 
-      .search-button:hover,
+      #error-page .search-button:hover,
       .not-found-search__search-button:hover /* youtube.com/yt Page */ {
         background-color: #ffffff1a;
         border-color: var(--ayt-bc);
       }
 
-      .search-button:active,
+      #error-page .search-button:active,
       .not-found-search__search-button:active /* youtube.com/yt Page */ {
         background-color: rgb(255 255 255 / .191);
         border-color: var(--ayt-bc);
@@ -301,7 +301,7 @@
         outline: none;
       }
 
-      .search-button-content,
+      #error-page .search-button-content,
       .not-found-search__search-icon /* youtube.com/yt Page */ {
         filter: brightness(3);
       }
