@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.12
+@version        2023.10.15
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -233,12 +233,12 @@
     .not-found-search__container::before /* youtube.com/yt Page */ {
       background: 100% / calc(49200% / 319) no-repeat;
       content: "";
-      filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
+      filter: drop-shadow(0 10000lvh var(--yt-spec-wordmark-text));
       width: calc(31900% / 492);
       height: 100%;
       position: absolute;
       right: 0;
-      transform: translateY(-200lvh);
+      transform: translateY(-10000lvh);
     }
 
     #error-page .logo::before {
@@ -1001,8 +1001,8 @@
 
           /* YouTube Logo */
             #metadata-container.ytd-statement-banner-renderer #logo-image.ytd-statement-banner-renderer {
-              filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
-              transform: translateY(-200lvh);
+              filter: drop-shadow(0 10000lvh var(--yt-spec-wordmark-text));
+              transform: translateY(-10000lvh);
             }
 
           /* Inline Styled Text */
@@ -1186,12 +1186,12 @@
         #logo.yt-unlimited-page-header-renderer::before {
           background: 100% 0% / calc(55200% / 389) no-repeat url("https://www.gstatic.com/youtube/img/promos/growth/ytr_lp2_logo_premium_desktop_552x71.png");
           content: "";
-          filter: drop-shadow(0 200lvh var(--yt-spec-wordmark-text));
+          filter: drop-shadow(0 10000lvh var(--yt-spec-wordmark-text));
           width: calc(38900% / 552);
           height: 100%;
           position: absolute;
           right: 0;
-          transform: translateY(-200lvh);
+          transform: translateY(-10000lvh);
         }
 
     /* Inline Styled Black Text */
@@ -1848,9 +1848,9 @@
           width: 100%;
           height: 100%;
           inset: 0;
-          position: absolute;
-          filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
-          transform: translateY(-200lvh);
+          position: absolute; 
+          filter: drop-shadow(0 10000lvh var(--yt-spec-text-primary));
+          transform: translateY(-10000lvh);
         }
 
       /* Open FAQ Button */
@@ -1914,12 +1914,12 @@
                 </svg>\
               ");
               content: "";
-              filter: drop-shadow(0 200lvh var(--yt-spec-text-primary));
+              filter: drop-shadow(0 10000lvh var(--yt-spec-text-primary));
               width: 100%;
               height: 100%;
               inset: 0;
               position: absolute;
-              transform: translateY(-200lvh);
+              transform: translateY(-10000lvh);
             }
 
             .ycs_btn_close::before {
