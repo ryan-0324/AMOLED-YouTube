@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.15
+@version        2023.10.18
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -478,6 +478,11 @@
           border-radius: 12px;
           box-shadow: inset 0 0 0 1px var(--ayt-bc) !important;
         }
+
+        /* YouTubeTV Promotion Pop-up */
+          yt-mealbar-promo-renderer[modern] {
+            background-color: transparent;
+          }
 
         /* Keyboard Shortcuts Pop-up */
           /* Row Borders */
