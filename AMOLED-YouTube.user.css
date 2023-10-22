@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           AMOLED YouTube
 @namespace      https://github.com/ryan-0324
-@version        2023.10.18
+@version        2023.10.22
 @description    A comprehensive AMOLED userstyle for the YouTube desktop site
 @author         ryan-0324
 @homepageURL    https://github.com/ryan-0324/AMOLED-YouTube
@@ -1710,6 +1710,12 @@
           /* Live Chat Owner Message */
             yt-live-chat-text-message-renderer[author-is-owner] {
               background-color: var(--yt-spec-base-background);
+            }
+
+          /* Live Chat Docked Messages */
+            #docked-item.yt-live-chat-docked-message yt-live-chat-text-message-renderer.yt-live-chat-docked-message,
+            #undocking-item.yt-live-chat-docked-message yt-live-chat-text-message-renderer.yt-live-chat-docked-message {
+              box-shadow: inset 0 0 0 1px var(--ayt-bc);
             }
 
           /* Show Support Buttons */
